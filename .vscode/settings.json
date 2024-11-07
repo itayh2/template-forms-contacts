@@ -8,18 +8,18 @@
   "editor.glyphMargin": false,
   "files.autoSave": "onFocusChange",
   "workbench.editor.enablePreview": false,
-  "workbench.colorTheme": "Visual Studio Light",
-  "workbench.statusBar.visible": false,
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.statusBar.visible": true,
   "editor.quickSuggestions": {
     "comments": "off",
     "strings": "off",
-    "other": "off"
+    "other": "on"
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.suggestOnTriggerCharacters": false,
-  "editor.wordBasedSuggestions": false,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.wordBasedSuggestions": "allDocuments",
   "terminal.integrated.fontSize": 20,
   "terminal.integrated.fontFamily": "monospace",
   "window.zoomLevel": 1,
-  "workbench.activityBar.location": "hidden",
+  "workbench.activityBar.location": "default",
 }
