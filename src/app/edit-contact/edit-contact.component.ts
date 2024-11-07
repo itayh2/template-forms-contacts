@@ -6,8 +6,11 @@ import { Contact } from '../contacts/contact.model';
 import { ContactsService } from '../contacts/contacts.service';
 import { concatWith } from 'rxjs';
 import { phoneTypeValues, addressTypesValues } from '../contacts/contact.model';
+import { RestrictedWordsValidator } from '../validators/restricted-words-validator.directive';
+
+
 @Component({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RestrictedWordsValidator],
   standalone: true,
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.css'],
@@ -21,7 +24,7 @@ export class EditContactComponent implements OnInit {
     personal: false,
     firstName: '',
     lastName: '',
-    dateOfBirth: null,
+    dateOfBirth: '',
     favoritesRanking: 0,
     phone: {
       phoneNumber: '',
