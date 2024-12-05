@@ -4,6 +4,7 @@
     <section>
       <nav>Name/Info</nav>
       <div>
+        <con-profile-icon-selector [(ngModel)]="contact.icon" name="icon" />
         <input type="hidden" [ngModel]="contact.id" name="id" />
         <input
           placeholder="First Name"
@@ -53,38 +54,41 @@
         </div>
       </div>
     </section>
-    <section ngModelGroup="phone">
-      <nav>Phone</nav>
-      <div class="flex-column" ngModelGroup="phone">
-        <div class="flex-group">
-          <input
-            placeholder="Phone"
-            [(ngModel)]="contact.phone.phoneNumber"
-            name="phoneNumber"
-          />
-          <img src="/assets/plus-grey-blue.png" class="add" />
-        </div>
-        <div class="radio">
-          <span *ngFor="let phoneType of phoneTypes">
+    <section>
+      <nav>Phones</nav>
+      <div class="flex-column" ngModelGroup="phones">
+        <div *ngFor="let phone of contact.phones; let i = index" class="flex-column">
+          <div class="flex-group">
             <input
-              type="radio"
-              [value]="phoneType.value"
-              [(ngModel)]="contact.phone.phoneType"
-              name="type"
+              placeholder="Phone"
+              [(ngModel)]="phone.phoneNumber"
+              name="phoneNumber{{i}}"
             />
-            {{ phoneType.title }}
-          </span>
+            <img src="/assets/plus-grey-blue.png" class="add" (click)="addPhone()"/>
+          </div>
+          <div class="radio">
+            <span *ngFor="let phoneType of phoneTypes">
+              <input
+                type="radio"
+                [value]="phoneType.value"
+                [(ngModel)]="phone.phoneType"
+                name="phoneType{{i}}"
+              />
+              {{ phoneType.title }}
+            </span>
+          </div>
         </div>
       </div>
     </section>
-    <section
-      ngModelGroup="address"
-      #addressGroup="ngModelGroup"
-      [class.error]="addressGroup.invalid && addressGroup.dirty"
-    >
+    <section>
       <nav>Address</nav>
-      <div class="address" ngModelGroup="address">
-        <div class="address">
+      <div>
+        <div
+          class="address"
+          ngModelGroup="address"
+          #addressGroup="ngModelGroup"
+          [class.error]="addressGroup.invalid && addressGroup.dirty"
+        >
           <div class="flex-group">
             <input
               placeholder="Address"
@@ -137,9 +141,10 @@
           [restrictedWords]="['foo', 'bar']"
           #notes="ngModel"
           [class.error]="notes.invalid"
-        ></textarea>
+        >
+        </textarea>
         <em *ngIf="notes.errors?.['restrictedWords']"
-          >Restricted words found: {{ notes.errors?.['restrictedWords'] }}</em
+          >Restricted words found: {{notes.errors?.['restrictedWords']}}</em
         >
       </div>
     </section>
